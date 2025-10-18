@@ -1,9 +1,14 @@
 package com.example.blog_api.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Getter // 게터 메서드 생략
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
     @Id // id가 기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키 자동 증가
@@ -21,7 +26,5 @@ public class Article {
         this.title = title;
         this.content = content;
     }
-
-    protected Article() {} // 기본 생성자
 
 }
