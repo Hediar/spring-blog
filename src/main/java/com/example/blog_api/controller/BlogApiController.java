@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor // final 필드로 생성자 자동 생성
 @RestController // JSON 형식으로 반환하는 컨트롤러
 public class BlogApiController {
-    private final BlogService blogService;
+    private final BlogService blogService; // 생성자 주입
 
     @PostMapping("/api/articles")
     // @RequestBody로 요청 본문 값 매핑
