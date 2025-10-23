@@ -2,6 +2,7 @@ package com.example.blog_api.controller;
 
 import com.example.blog_api.domain.Article;
 import com.example.blog_api.dto.AddArticleRequest;
+import com.example.blog_api.dto.UpdateArticleRequest;
 import com.example.blog_api.repository.BlogRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -145,5 +146,37 @@ class BlogApiControllerTest {
         Optional<Article> deletedArticle = blogRepository.findById(savedArticle.getId());
         assertThat(deletedArticle).isEmpty();
 
+    }
+
+    @DisplayName("updateArticle: 블로그 글 수정 성공")
+    @Test
+    public void updateArticle() throws Exception{
+        // given
+        final String url = "/api/articles/{id}";
+        final String title = "title";
+        final String content = "content";
+
+        Article savedArticle = blogRepository.save(Article.builder()
+                .title(title)
+                .content(content)
+                .build());
+
+        final String newTitle = "new title";
+        final String newContent = "new content";
+
+        UpdateArticleRequest request = new UpdateArticleRequest(newTitle, newContent);
+
+        // when
+        ResultActions result = mockMvc.perform(put(url, savedArticle.getId())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(request)));
+
+        // then
+        result.andExpect(status().isOk());
+
+        Article article = blogRepository.findById(savedArticle.getId()).get();
+
+        assertThat(article.getTitle()).isEqualTo(newTitle);
+        assertThat(article.getContent()).isEqualTo(newContent);
     }
 }
