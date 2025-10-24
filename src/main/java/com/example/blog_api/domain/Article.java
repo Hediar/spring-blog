@@ -22,7 +22,8 @@ public class Article {
     private String content;
 
     @Builder // 빌더 패턴으로 객체 생성 (게터, 세터 생략가능)
-    public Article(String title, String content) {
+    public Article(Long id, String title, String content) {
+        this.id = id;
         this.title = title;
         this.content = content;
     }
