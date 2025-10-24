@@ -24,7 +24,7 @@ export default function ArticleForm({ mode = 'create' }) {
         setTitle(a.title || '')
         setContent(a.content || '')
       } catch (e) {
-        setError(e.message || 'Failed to load')
+        setError(e.message || '불러오기에 실패했습니다')
       }
     }
     load()
@@ -36,7 +36,7 @@ export default function ArticleForm({ mode = 'create' }) {
     setError('')
     try {
       const payload = { title: title.trim(), content: content.trim() }
-      if (!payload.title) throw new Error('Title is required')
+      if (!payload.title) throw new Error('제목은 필수입니다')
       if (isEdit) {
         await updateArticle(id, payload)
         navigate(`/articles/${id}`)
@@ -46,7 +46,7 @@ export default function ArticleForm({ mode = 'create' }) {
         navigate(newId ? `/articles/${newId}` : '/')
       }
     } catch (e) {
-      setError(e.message || 'Save failed')
+      setError(e.message || '저장에 실패했습니다')
     } finally {
       setSaving(false)
     }
@@ -55,36 +55,36 @@ export default function ArticleForm({ mode = 'create' }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{isEdit ? 'Edit Article' : 'New Article'}</CardTitle>
+        <CardTitle>{isEdit ? '글 수정' : '새 글'}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={onSubmit} className="grid gap-4">
           {error && <p className="text-sm text-destructive m-0">{error}</p>}
           <div className="grid gap-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title">제목</Label>
             <Input
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Enter a title"
+              placeholder="제목을 입력하세요"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="content">Content</Label>
+            <Label htmlFor="content">내용</Label>
             <Textarea
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               rows={12}
-              placeholder="Write your content..."
+              placeholder="내용을 입력하세요..."
             />
           </div>
           <div className="flex gap-2">
             <Button type="submit" disabled={saving}>
-              {saving ? 'Saving...' : isEdit ? 'Update' : 'Create'}
+              {saving ? '저장 중...' : isEdit ? '수정' : '등록'}
             </Button>
             <Button type="button" variant="ghost" onClick={() => navigate(-1)}>
-              Cancel
+              취소
             </Button>
           </div>
         </form>

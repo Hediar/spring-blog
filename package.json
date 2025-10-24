@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "biome:check": "biome check .",
+    "biome:fix": "biome check --write .",
+    "biome:fmt": "biome format --write .",
+    "biome:lint": "biome lint ."
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -27,7 +31,8 @@
     "tailwindcss": "^3.4.14",
     "postcss": "^8.4.49",
     "autoprefixer": "^10.4.20",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "@biomejs/biome": "^1.9.4"
   },
   "dependencies": {
     "react": "^19.1.1",

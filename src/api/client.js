@@ -24,7 +24,7 @@ export async function request(path, { method = 'GET', headers = {}, body } = {})
   }
 
   if (!res.ok) {
-    const message = typeof data === 'string' ? data : (data?.message || 'Request failed')
+    const message = typeof data === 'string' ? data : (data?.message || '요청에 실패했습니다')
     throw new Error(message)
   }
 
@@ -38,4 +38,3 @@ export const api = {
   patch: (path, body) => request(path, { method: 'PATCH', body }),
   delete: (path) => request(path, { method: 'DELETE' }),
 }
-
