@@ -30,12 +30,18 @@ export default function Header() {
           </NavLink>
         </div>
 
-        <NavLink to="/articles/new">
-          <Button size="sm" className="gap-1">
-            <PlusCircle className="h-4 w-4" /> 새 글
-          </Button>
-        </NavLink>
+        <div className="flex items-center gap-2">
+          <NavLink to="/login">
+            <Button size="sm" variant="outline">로그인</Button>
+          </NavLink>
+          <NavLink to="/articles/new">
+            <Button size="sm" className="gap-1">
+              <PlusCircle className="h-4 w-4" /> 새 글
+            </Button>
+          </NavLink>
+        </div>
       </nav>
     </header>
   )
 }
+
