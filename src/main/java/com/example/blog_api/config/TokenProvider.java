@@ -1,4 +1,4 @@
-package com.example.blog_api.config.jwt;
+package com.example.blog_api.config;
 
 import com.example.blog_api.domain.User;
 import io.jsonwebtoken.Header;
