@@ -57,7 +57,7 @@ public class WebSecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailService userDetailService) throws Exception {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsPasswordService(userService);
+        authProvider.setUserDetailsService(userService);
         authProvider.setPasswordEncoder(bCryptPasswordEncoder);
         return new ProviderManager(authProvider);
     }
